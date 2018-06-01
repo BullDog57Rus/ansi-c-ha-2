@@ -59,7 +59,9 @@ double pop() {
     }
     struct Node *resNode = stack;
     stack = stack->next;
-    stack->prev = NULL;
+    if (stack != NULL) {
+        stack->prev = NULL;
+    }
     double res = resNode->value;
     free(resNode);
     size--;
@@ -70,4 +72,10 @@ double pick() {
     // just returns the top value
     // if stack is empty returns -infinity and print error message to the screen
     /* YOUR CODE */
+
+    if (size <= 0) {
+        printf("Stack is empty");
+        return -INFINITY;
+    }
+    return stack->value;
 }
