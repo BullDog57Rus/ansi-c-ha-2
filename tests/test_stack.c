@@ -4,18 +4,37 @@
 #include <check.h>
 #include "stack.h"
 
-START_TEST (test_pop)
+START_TEST (test_push)
     {
         //Test 0
-        int res = push(1);
-        ck_assert_int_eq(res, 0);
+        ck_assert_int_eq(push(1), 0);
 
         //Test 1
         for (int i = 0; i < 49; ++i) {
             push(i);
         }
-        res = push(55);
-        ck_assert_int_eq(res, 1);
+        ck_assert_int_eq(push(55), 1);
+    }
+END_TEST
+
+
+START_TEST (test_pop)
+    {
+        //Test 0
+        push(15);
+        ck_assert_double_eq(pop(), 15);
+        ck_assert_double_eq(pop(), -INFINITY);
+
+        //Test 1
+        for (int i = 0; i < 20; ++i) {
+            push(i);
+        }
+        ck_assert_double_eq(pop(), 19);
+
+        //Test 2
+        for (int i = 18; i >= 0; --i) {
+            ck_assert_double_eq(pop(), i);
+        }
     }
 END_TEST
 
@@ -36,25 +55,6 @@ START_TEST (test_peek)
     }
 END_TEST
 
-START_TEST (test_push)
-    {
-        //Test 0
-        push(15);
-        ck_assert_double_eq(pop(), 15);
-        ck_assert_double_eq(pop(), -INFINITY);
-
-        //Test 1
-        for (int i = 0; i < 20; ++i) {
-            push(i);
-        }
-        ck_assert_double_eq(pop(), 19);
-
-        //Test 2
-        for (int i = 18; i >= 0; --i) {
-            ck_assert_double_eq(pop(), i);
-        }
-    }
-END_TEST
 
 Suite *str_suite(void) {
     Suite *suite = suite_create("stack");

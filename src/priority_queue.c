@@ -38,26 +38,36 @@ int insert(double value, int key) {
     }
     struct Node *new = newNode();
     new->value = value;
+    new->key = key;
     if (queue == NULL) {
         queue = new;
     } else {
         struct Node *pointer = queue;
-        while (pointer->key < key && pointer->next != NULL) {
+        while (pointer->key <= key && pointer->next != NULL) {
             pointer = pointer->next;
         }
-        if (pointer->next == NULL) {
+        if (size == 1) {
+            if (key >= pointer->key) {
+                pointer->next = new;
+                new->prev = pointer;
+            } else {
+                pointer->prev = new;
+                new->next = pointer;
+                queue = new;
+            }
+        } else if (pointer->prev == NULL) {
+            pointer->prev = new;
+            new->next = pointer;
+            queue = new;
+        } else if (pointer->next == NULL) {
             pointer->next = new;
             new->prev = pointer;
-        }
-        if (pointer->prev == NULL) {
-            queue = new;
-            queue->next = pointer;
-            pointer->prev = queue;
         } else {
             pointer->prev->next = new;
             new->prev = pointer->prev;
             new->next = pointer;
             pointer->prev = new;
+
         }
     }
     size++;

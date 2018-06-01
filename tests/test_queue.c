@@ -3,13 +3,37 @@
 
 START_TEST (test_insert)
     {
-        //YOUR CODE HERE
+        //Test 0
+        ck_assert_int_eq(insert(5, 1), 0);
+
+        //Test 1
+        ck_assert_int_eq(insert(6, 2), 0);
+        ck_assert_int_eq(insert(2, 2), 0);
+        ck_assert_int_eq(insert(21, 2), 0);
+        ck_assert_int_eq(insert(1, 3), 0);
+
+
+        //Test 3
+        for (int i = 5; i < 100; ++i) {
+            insert(i, i);
+        }
+        ck_assert_int_eq(insert(1, 1), 1);
+
     }
 END_TEST
 
 START_TEST (test_min)
     {
-        //YOUR CODE HERE
+        //Test 0
+        ck_assert_double_eq(extract_min(), 5);
+        ck_assert_double_eq(extract_min(), 6);
+        ck_assert_double_eq(extract_min(), 2);
+        ck_assert_double_eq(extract_min(), 21);
+        ck_assert_double_eq(extract_min(), 1);
+        ck_assert_double_eq(extract_min(), 5);
+
+        //Test 1
+
     }
 END_TEST
 
