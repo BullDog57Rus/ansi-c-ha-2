@@ -19,7 +19,6 @@ struct Node *newNode() {
     struct Node *new = malloc(sizeof(struct Node));
     new->next = NULL;
     new->prev = NULL;
-    new->value = NULL;
     return new;
 }
 
@@ -54,7 +53,7 @@ double pop() {
     /* YOUR CODE */
 
     if (size <= 0) {
-        printf("Stack is empty");
+        printf("Stack is empty\n");
         return -INFINITY;
     }
     struct Node *resNode = stack;
@@ -74,7 +73,7 @@ double pick() {
     /* YOUR CODE */
 
     if (size <= 0) {
-        printf("Stack is empty");
+        printf("Stack is empty\n");
         return -INFINITY;
     }
     return stack->value;

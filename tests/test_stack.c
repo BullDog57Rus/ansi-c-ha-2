@@ -6,20 +6,53 @@
 
 START_TEST (test_pop)
     {
+        //Test 0
+        int res = push(1);
+        ck_assert_int_eq(res, 0);
 
+        //Test 1
+        for (int i = 0; i < 49; ++i) {
+            push(i);
+        }
+        res = push(55);
+        ck_assert_int_eq(res, 1);
     }
 END_TEST
 
 
 START_TEST (test_peek)
     {
-        //YOUR CODE HERE
+        //Test 0
+        ck_assert_double_eq(pick(), -INFINITY);
+
+        //Test 1
+        push(5);
+        ck_assert_double_eq(pick(), 5);
+
+        push(-12);
+        ck_assert_double_eq(pick(), -12);
+        ck_assert_double_eq(pick(), -12);
+        ck_assert_double_eq(pick(), -12);
     }
 END_TEST
 
 START_TEST (test_push)
     {
-        //YOUR CODE HERE
+        //Test 0
+        push(15);
+        ck_assert_double_eq(pop(), 15);
+        ck_assert_double_eq(pop(), -INFINITY);
+
+        //Test 1
+        for (int i = 0; i < 20; ++i) {
+            push(i);
+        }
+        ck_assert_double_eq(pop(), 19);
+
+        //Test 2
+        for (int i = 18; i >= 0; --i) {
+            ck_assert_double_eq(pop(), i);
+        }
     }
 END_TEST
 

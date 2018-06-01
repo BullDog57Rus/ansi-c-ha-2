@@ -70,7 +70,7 @@ double extract_min() {
     /* YOUR CODE */
 
     if (size <= 0) {
-        printf("Queue is empty");
+        printf("Queue is empty\n");
         return -INFINITY;
     }
     struct Node *resNode = queue;
