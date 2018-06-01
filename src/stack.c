@@ -43,6 +43,7 @@ int push(double value) {
         new->next->prev = new;
         stack = new;
     }
+    size++;
     return 0;
 }
 
