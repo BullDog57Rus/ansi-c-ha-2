@@ -12,6 +12,16 @@ struct Node {
 
 };
 
+struct Node *queue = NULL; // it is your queue to work with it
+int size = 0;
+
+struct Node *newNode() {
+    struct Node *new = malloc(sizeof(struct Node));
+    new->next = NULL;
+    new->prev = NULL;
+    return new;
+}
+
 int insert(double value, int key) {
     // return the exit code:
     //	0 - success
@@ -21,6 +31,36 @@ int insert(double value, int key) {
     // the queue size is 100 elements
 
     /* YOUR CODE */
+
+    if (size >= 100) {
+        return 1;
+    }
+    struct Node *new = newNode();
+    new->value = value;
+    if (queue == NULL) {
+        queue = new;
+    } else {
+        struct Node *pointer = queue;
+        while (pointer->value < value && pointer->next != NULL) {
+            pointer = pointer->next;
+        }
+        if (pointer->next == NULL) {
+            pointer->next = new;
+            new->prev = pointer;
+        }
+        if (pointer->prev == NULL) {
+            queue = new;
+            queue->next = pointer;
+            pointer->prev = queue;
+        } else {
+            pointer->prev->next = new;
+            new->prev = pointer->prev;
+            new->next = pointer;
+            pointer->prev = new;
+        }
+    }
+    size++;
+    return 0;
 }
 
 double extract_min() {
@@ -28,5 +68,3 @@ double extract_min() {
     // if queue is empty returns -infinity and print error message to the screen
     /* YOUR CODE */
 }
-
-struct Node *queue = NULL; // it is your queue to work with it
