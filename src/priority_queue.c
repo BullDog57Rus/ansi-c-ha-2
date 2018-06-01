@@ -2,6 +2,7 @@
 // Created by puzankova 30.05.18
 //
 
+#include <math.h>
 #include "priority_queue.h"
 
 struct Node {
@@ -41,7 +42,7 @@ int insert(double value, int key) {
         queue = new;
     } else {
         struct Node *pointer = queue;
-        while (pointer->value < value && pointer->next != NULL) {
+        while (pointer->key < key && pointer->next != NULL) {
             pointer = pointer->next;
         }
         if (pointer->next == NULL) {
@@ -67,4 +68,18 @@ double extract_min() {
     // returns the min value and delete it from queue
     // if queue is empty returns -infinity and print error message to the screen
     /* YOUR CODE */
+
+    if (size <= 0) {
+        printf("Queue is empty");
+        return -INFINITY;
+    }
+    struct Node *resNode = queue;
+    queue = queue->next;
+    if (queue != NULL) {
+        queue->prev = NULL;
+    }
+    double res = resNode->value;
+    free(resNode);
+    size--;
+    return res;
 }
