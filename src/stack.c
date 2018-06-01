@@ -2,6 +2,7 @@
 // Created by puzankova 30.05.18
 //
 
+#include <math.h>
 #include "stack.h"
 
 struct Node {
@@ -52,7 +53,17 @@ double pop() {
     // if stack is empty returns -infinity and print error message to the screen
     /* YOUR CODE */
 
-
+    if (size <= 0) {
+        printf("Stack is empty");
+        return -INFINITY;
+    }
+    struct Node *resNode = stack;
+    stack = stack->next;
+    stack->prev = NULL;
+    double res = resNode->value;
+    free(resNode);
+    size--;
+    return res;
 }
 
 double pick() {
