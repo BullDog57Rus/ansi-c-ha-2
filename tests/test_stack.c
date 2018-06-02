@@ -14,6 +14,8 @@ START_TEST (test_push)
             push(i);
         }
         ck_assert_int_eq(push(55), 1);
+        while (pop() != -INFINITY) {
+        }
     }
 END_TEST
 
@@ -35,6 +37,8 @@ START_TEST (test_pop)
         for (int i = 18; i >= 0; --i) {
             ck_assert_double_eq(pop(), i);
         }
+        while (pop() != -INFINITY) {
+        }
     }
 END_TEST
 
@@ -52,6 +56,8 @@ START_TEST (test_peek)
         ck_assert_double_eq(pick(), -12);
         ck_assert_double_eq(pick(), -12);
         ck_assert_double_eq(pick(), -12);
+        while (pop() != -INFINITY) {
+        }
     }
 END_TEST
 

@@ -18,22 +18,30 @@ START_TEST (test_insert)
             insert(i, i);
         }
         ck_assert_int_eq(insert(1, 1), 1);
-
+        while (extract_min() != -INFINITY) {
+        }
     }
 END_TEST
 
 START_TEST (test_min)
     {
         //Test 0
+        ck_assert_double_eq(extract_min(), -INFINITY);
+
+        //Test 1
+        ck_assert_int_eq(insert(6, 2), 0);
+        ck_assert_int_eq(insert(5, 1), 0);
+        ck_assert_int_eq(insert(2, 2), 0);
+        ck_assert_int_eq(insert(21, 2), 0);
+        ck_assert_int_eq(insert(1, 3), 0);
         ck_assert_double_eq(extract_min(), 5);
         ck_assert_double_eq(extract_min(), 6);
         ck_assert_double_eq(extract_min(), 2);
         ck_assert_double_eq(extract_min(), 21);
         ck_assert_double_eq(extract_min(), 1);
-        ck_assert_double_eq(extract_min(), 5);
-
-        //Test 1
-
+        ck_assert_double_eq(extract_min(), -INFINITY);
+        while (extract_min() != -INFINITY) {
+        }
     }
 END_TEST
 
